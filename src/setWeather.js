@@ -1,19 +1,27 @@
 export default function setWeather(data) {
   const weatherDiv = document.querySelector(".weather");
+
+  // prevent duplicate reports
+  while (weatherDiv.firstChild) {
+    weatherDiv.removeChild(firstChild);
+  }
+
   const cityHeader = document.createElement("h3");
   const currWeather = document.createElement("div");
   const avgWeather = document.createElement("div");
 
-  const temperature = document.createElement("p"); // `${Math.round(((data.temp - 273.15) * 9) / 5 + 32)}\xB0F`;
-  const feelsLike = document.createElement("p"); // `${Math.round(((data.feelsLike - 273.15) * 9) / 5 + 32)}\xB0F`;
-  const currConditions = document.createElement("p"); // `${data.currCondition}`;
-  const humidity = document.createElement("p"); // `${data.humidity}%`;
-  const windSpeed = document.createElement("p"); // `${data.speed}MPH`;
+  const temperature = document.createElement("p");
+  const currConditions = document.createElement("p");
+  const humidity = document.createElement("p");
+  const windSpeed = document.createElement("p");
 
   const avgHeader = document.createElement("h3");
-  const tempMax = document.createElement("p"); // `${Math.round(((data.tempMax - 273.15) * 9) / 5 + 32)}\xB0F`;
-  const tempMin = document.createElement("p"); // `${Math.round(((data.tempMin - 273.15) * 9) / 5 + 32)}\xB0F`;
-  const avgConditions = document.createElement("p"); // `${data.avgCondition}`;
+  const tempMax = document.createElement("p");
+  const tempMin = document.createElement("p");
+  const avgConditions = document.createElement("p");
+
+  currWeather.classList.add("curr-weather");
+  avgWeather.classList.add("avg-weather");
 
   cityHeader.textContent = `Current weather in ${data.name}:`;
   temperature.textContent = `Temperature: ${Math.round(
@@ -34,13 +42,13 @@ export default function setWeather(data) {
   )}\xB0F`;
   avgConditions.textContent = `Average condition: ${data.avgCondition}`;
 
-  weatherDiv.appendChild(cityHeader);
+  currWeather.appendChild(cityHeader);
   currWeather.appendChild(temperature);
   currWeather.appendChild(currConditions);
   currWeather.appendChild(humidity);
   currWeather.appendChild(windSpeed);
   weatherDiv.appendChild(currWeather);
-  weatherDiv.appendChild(avgHeader);
+  avgWeather.appendChild(avgHeader);
   avgWeather.appendChild(tempMax);
   avgWeather.appendChild(tempMin);
   avgWeather.appendChild(avgConditions);

@@ -9,11 +9,14 @@ export default function pageLoad() {
   const inputDiv = document.createElement("div");
   const getCityInput = document.createElement("input");
   const getWeatherBtn = document.createElement("button");
+  const weatherContainer = document.createElement("div");
   const weatherDiv = document.createElement("div");
   const footer = document.createElement("footer");
   const authorCredit = document.createElement("p");
 
   container.classList.add("container");
+  inputDiv.classList.add("input-div");
+  weatherContainer.classList.add("weather-container");
   weatherDiv.classList.add("weather");
 
   const logo = new Image();
@@ -23,6 +26,7 @@ export default function pageLoad() {
   getCityInput.type = "text";
   getCityInput.classList.add("city-input");
   getWeatherBtn.textContent = "Search";
+  getWeatherBtn.classList.add("search-btn");
   getWeatherBtn.addEventListener("click", async () => {
     if (getCityInput.value === "") return;
     const weatherData = await getWeather.fetchWeatherData(getCityInput.value);
@@ -41,7 +45,8 @@ export default function pageLoad() {
   footer.appendChild(authorCredit);
   container.appendChild(header);
   container.appendChild(inputDiv);
-  container.appendChild(weatherDiv);
+  weatherContainer.appendChild(weatherDiv);
+  container.appendChild(weatherContainer);
   container.appendChild(footer);
 
   console.log("I'm the page loader mate!");
